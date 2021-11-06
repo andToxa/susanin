@@ -7,6 +7,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Example", "src\Infrastructure.Example\Infrastructure.Example.csproj", "{89A2899C-89DC-432B-B17E-3375D53829E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{56F0CB6A-8CCA-4412-A632-8F9C1D89DF0E}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5FACB0C7-3546-43A6-BD36-098463DF52E4}"
 EndProject
