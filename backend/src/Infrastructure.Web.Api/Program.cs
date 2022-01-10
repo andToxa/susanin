@@ -1,23 +1,45 @@
-﻿using Infrastructure.Common.Extensions;
-using Microsoft.AspNetCore.Hosting;
+﻿using Application.Example.Extensions;
+using Infrastructure.Common.Extensions;
+using Infrastructure.Example.Extensions;
+using Infrastructure.Web.Common.Extensions.Swagger;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 
-namespace Infrastructure.Web.Api
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseLogging();
+
+builder.Services.AddOptions();
+
+builder.Services.AddHealthChecks();
+
+builder.Services
+    .AddApplication(builder.Configuration)
+    .AddInfrastructure(builder.Configuration);
+
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options => options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddSwaggerExtension(builder.Configuration);
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    internal static class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder
-                        .UseLogging()
-                        .UseStartup<Startup>();
-                });
-    }
+    app.UseSwaggerExtension();
 }
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
