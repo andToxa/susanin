@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Infrastructure.Web.Api
 {
@@ -35,7 +36,7 @@ namespace Infrastructure.Web.Api
             services.AddInfrastructure(_configuration);
             services
                 .AddControllers()
-                .AddJsonOptions(options => options.JsonSerializerOptions.IgnoreNullValues = true);
+                .AddJsonOptions(options => options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
             if (!_webHostEnvironment.IsProduction())
             {
                 services.AddSwaggerExtension(_configuration);
