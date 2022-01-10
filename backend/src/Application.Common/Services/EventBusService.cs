@@ -24,7 +24,7 @@ namespace Application.Common.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc cref="IEventBusService.PublishAsync{T}"/>
         public async Task PublishAsync<T>(T domainEvent)
         {
             await _mediator.Publish(new Event<T>(domainEvent));
