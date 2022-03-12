@@ -1,0 +1,12 @@
+{
+  "legacyEditor": false,
+  "livePreview": true,
+  "spellcheck": true,
+  "spellcheckLanguages": [
+    "ru",
+    "en-US"
+  ],
+  "useTab": false,
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "./files"
+}
