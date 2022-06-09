@@ -6,11 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Common.Application\Common.Application.csproj" />
+      <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+      <ProjectReference Include="..\Common.Domain\Common.Domain.csproj" />
     </ItemGroup>
 
 </Project>
